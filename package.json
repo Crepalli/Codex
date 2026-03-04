@@ -1,0 +1,17 @@
+{
+  "name": "todo-webapp",
+  "version": "1.0.0",
+  "description": "Aplicação web de to-do com frontend bonito e backend funcional",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "todo",
+    "frontend",
+    "backend"
+  ],
+  "author": "",
+  "license": "MIT"
+}

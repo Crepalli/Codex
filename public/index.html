@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlowTask | To-Do App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="todo-card">
+        <header class="hero">
+          <p class="hero__badge">Organização inteligente</p>
+          <h1>FlowTask</h1>
+          <p class="hero__subtitle">Gerencie seu dia com foco: adicione, conclua e edite suas tarefas em segundos.</p>
+        </header>
+
+        <form id="todo-form" class="todo-form">
+          <input
+            id="todo-input"
+            name="todo"
+            type="text"
+            maxlength="120"
+            placeholder="Digite uma nova tarefa..."
+            autocomplete="off"
+            required
+          />
+          <button type="submit">Adicionar</button>
+        </form>
+
+        <section class="stats" id="stats"></section>
+
+        <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <template id="todo-item-template">
+      <li class="todo-item">
+        <label class="todo-item__check">
+          <input type="checkbox" />
+          <span class="checkmark"></span>
+        </label>
+        <input class="todo-item__text" type="text" maxlength="120" />
+        <button class="todo-item__delete" type="button" aria-label="Remover tarefa">×</button>
+      </li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
