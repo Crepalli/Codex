@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+enum PaymentMethod {
+  PIX
+  CREDIT_CARD
+  DEBIT_CARD
+  CASH
+  BANK_TRANSFER
+  OTHER
+}
+
+model User {
+  id          String        @id @default(cuid())
+  name        String
+  email       String        @unique
+  password    String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  categories  Category[]
+  transactions Transaction[]
+  accounts    Account[]
+  goals       Goal[]
+}
+
+model Category {
+  id          String          @id @default(cuid())
+  name        String
+  type        TransactionType
+  color       String?
+  icon        String?
+  userId      String
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model Transaction {
+  id            String          @id @default(cuid())
+  description   String
+  amount        Decimal         @db.Decimal(14, 2)
+  type          TransactionType
+  date          DateTime
+  notes         String?
+  paymentMethod PaymentMethod
+  categoryId    String
+  category      Category        @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  userId        String
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@index([userId, date])
+}
+
+model Account {
+  id             String   @id @default(cuid())
+  name           String
+  type           String
+  initialBalance Decimal  @db.Decimal(14, 2)
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Goal {
+  id            String   @id @default(cuid())
+  title         String
+  targetAmount  Decimal  @db.Decimal(14, 2)
+  currentAmount Decimal  @db.Decimal(14, 2)
+  dueDate       DateTime
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
