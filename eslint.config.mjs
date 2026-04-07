@@ -1,10 +1,10 @@
-import nextPlugin from 'eslint-config-next';
+import nextVitals from 'eslint-config-next/core-web-vitals';
 
 export default [
-  ...nextPlugin,
+  ...nextVitals,
   {
     rules: {
-      '@next/next/no-html-link-for-pages': 'off'
-    }
-  }
+      '@next/next/no-html-link-for-pages': 'off',
+    },
+  },
 ];
