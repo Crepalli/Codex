@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/auth/session";
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = await requireUser();
     const body = await req.json();
-    const { id } = params;
+    const { id } = await params;
     await prisma.transaction.updateMany({
       where: { id, userId: user.id },
       data: {
@@ -20,10 +20,10 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   }
 }
 
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = await requireUser();
-    const { id } = params;
+    const { id } = await params;
     await prisma.transaction.deleteMany({ where: { id, userId: user.id } });
     return NextResponse.json({ ok: true });
   } catch {

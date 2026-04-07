@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { BarChart3, LayoutDashboard, List, Tag } from "lucide-react";
+import type { ComponentType } from "react";
 import clsx from "clsx";
 
-const links = [
+const links: Array<{ href: Route; label: string; icon: ComponentType<{ size?: number }> }> = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/transactions", label: "Transações", icon: List },
   { href: "/categories", label: "Categorias", icon: Tag },

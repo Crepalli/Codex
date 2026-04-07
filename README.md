@@ -74,3 +74,8 @@ npm run dev
 - Metas e contas com telas próprias
 - Exportação PDF/CSV
 - Testes E2E com Playwright
+
+
+## Deploy na Vercel
+- O projeto usa ESLint 9 com configuração flat (`eslint.config.mjs`) e dependências atualizadas para evitar avisos de pacotes depreciados.
+- O `next build` está com `eslint.ignoreDuringBuilds: true` para impedir falhas de patching no pipeline da Vercel; rode `npm run lint` separadamente no CI/local para manter qualidade.
