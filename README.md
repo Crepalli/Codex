@@ -74,8 +74,3 @@ npm run dev
 - Metas e contas com telas próprias
 - Exportação PDF/CSV
 - Testes E2E com Playwright
-
-
-## Deploy na Vercel
-- Este projeto está configurado com ESLint 8 + `.eslintrc.json` para compatibilidade com o pipeline de build da Vercel/Next.
-- Com isso, evita-se o erro: `Failed to patch ESLint because the calling module was not recognized`.
