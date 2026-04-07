@@ -79,3 +79,4 @@ npm run dev
 ## Deploy na Vercel
 - O projeto usa ESLint 9 com configuração flat (`eslint.config.mjs`) e dependências atualizadas para evitar avisos de pacotes depreciados.
 - O `next build` está com `eslint.ignoreDuringBuilds: true` para impedir falhas de patching no pipeline da Vercel; rode `npm run lint` separadamente no CI/local para manter qualidade.
+- Se a Vercel ainda resolver `eslint@8`, limpe cache do projeto e faça novo deploy; o `package.json` fixa `eslint@9.24.0` via `overrides` para evitar cadeia depreciada.
